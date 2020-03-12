@@ -1,14 +1,17 @@
 
 
-body {
-    /*font-family: 'Monoton', cursive;*/
-    font-family: cursive;
+h1 {
+    font-family: 'Monoton', cursive;
+    font-weight: 200;
+    color: crimson;
+    background-color: rgb(248, 203, 89);
 
 }
 
 
 #timer {
     font-size: large;
-    
+    font-family: cursive;
+    color: crimson;
 
 }
