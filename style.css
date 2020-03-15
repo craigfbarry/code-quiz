@@ -1,17 +1,17 @@
-
+*{
+    font-family: cursive; 
+}
 
 h1 {
-    font-family: cursive;
-   
-    color: crimson;
     
-
+    color: crimson;
 }
+
 
 
 #timer {
     font-size: large;
-    font-family: cursive;
+   
     color: crimson;
 
 }

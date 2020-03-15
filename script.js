@@ -1,11 +1,17 @@
 // Declaration of Variables to be used
 
 var secondsLeft = 30;
-var questionCount = 0;
+//var questionCount = 0;
 var quizQuestions = [
         { question: "Who invented jquery?", answers: {a:"John Resig",b:"Bill Gates",c:"Mark Zuckerberg",d:"Elon Musk"}, correctAnswer :"a"},
-        { question: "?", answers: {a:"a",b:"b",c:"c",d:"d"}, correctAnswer :"b"},
-        { question: "?", answers: {a:"a",b:"",c:"c",d:"d"}, correctAnswer :"c"},
+     
+        { question: "The hide() function hides an element by ____.?", answers: 
+        {a:"setting “visibility” inline style attribute of that element to “hidden”.",
+        b:"setting the horizontal attribute of that element to “-100px” off visible screen.",
+        c:"setting “display” inline style attribute of that element to “none”.",
+        d:"setting the vertical attribute of that element to “-100px” off visible screen."}, correctAnswer :"c"},
+       
+        { question: "?", answers: {a:"a",b:"",c:"c",d:"d"}, correctAnswer :"b"},
 ];
 
 // A function for the quiz timer
@@ -34,7 +40,7 @@ $("#startButton").click(function startTimer(){
 
 //Begin Quiz loop
 $("#startButton").click(function startQuiz(){
-    
+    var questionCount = 0;
     //Add the question div
     $.each(quizQuestions, function displayQuiz(i){
     
@@ -45,6 +51,7 @@ $("#startButton").click(function startQuiz(){
         console.log("count i " + i);
     
         let quizQuestion = $("<div>");  
+        $("#quiz").empty();
         quizQuestion.addClass("question row m-5").html("Question " + (i+1)+ " : " + quizQuestions[i].question);
         $("#quiz").append(quizQuestion);
         
@@ -60,7 +67,11 @@ $("#startButton").click(function startQuiz(){
 
 
         }
+        else {
+            // Do nothing until event then allow loop to progress
 
+            //function(){            }
+        }
         
 
     }
