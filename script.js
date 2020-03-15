@@ -1,6 +1,7 @@
 // Declaration of Variables to be used
 
 var secondsLeft = 10;
+var questionCount = 0;
 var quizQuestions = [
         { question: "Who invented jquery?", answers: {a:"John Resig",b:"Bill Gates",c:"Mark Zuckerberg",d:"Elon Musk"}, correctAnswer :"a"},
         { question: "?", answers: {a:"a",b:"b",c:"c",d:"d"}, correctAnswer :"b"},
@@ -31,37 +32,53 @@ $("#startButton").click(function startTimer(){
 
 
 //Add the question div
-    let quizQuestion = $("<div>");
-    quizQuestion.addClass("question row m-5").html("Question " + 1 + " : " + quizQuestions[0].question);
+$.each(quizQuestions, function (i){
+
+    if (questionCount===i){
+
+    let quizQuestion = $("<div>");  
+    quizQuestion.addClass("question row m-5").html("Question " + (i+1)+ " : " + quizQuestions[i].question);
     $("#quiz").append(quizQuestion);
     
     
 //Loop to set up the 4 answer buttons
-    $.each(quizQuestions[0].answers, function(i, answerValue){
+    $.each(quizQuestions[i].answers, function(j, answerValue){
         let quizAnswer = $("<button>");
-        quizAnswer.attr("answer-letter",i);
+        quizAnswer.attr("answer-letter",j);
         quizAnswer.addClass("answer row m-5").html(answerValue);
         $("#quiz").append($(quizAnswer));
         }
     );
+    }
 
-//Function to check the clicked button against the correct answer.
-//Output the result and calculate timer   
- 
+
+} );
+
+
     $(".answer").click(function checkAnswer(){
+        var k=questionCount;
         let result = $("<div>");
         let selection = ($(this).attr("answer-letter"));
-
-
-        if (selection === quizQuestions[0].correctAnswer) {
+        if (selection === quizQuestions[k].correctAnswer) {
             result.html("Correct");
             result.appendTo("#quiz");
+           
+        
+           // $("#quiz").empty();
             }
-        else  {
+        else if (selection !== quizQuestions[k].correctAnswer) {
             result.html("Incorrect");
-            result.appendTo("#quiz");
-             } 
+            result.appendTo("#quiz");  
+            
+          //  $("#quiz").empty();
+            
+             }         
     });
+
+    
+
+//} );
+
 
 
 //Closing brackets from Document ready
