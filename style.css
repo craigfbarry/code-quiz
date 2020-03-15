@@ -1,7 +1,7 @@
 
 
 h1 {
-    font-family: 'Monoton', cursive;
+    font-family: cursive;
    
     color: crimson;
     background-color: rgb(248, 203, 89);
@@ -13,5 +13,14 @@ h1 {
     font-size: large;
     font-family: cursive;
     color: crimson;
+
+}
+.answer {
+    color: rgb(31, 59, 34);
+
+}
+
+.question {
+    color: rgb(33, 16, 44);
 
 }
