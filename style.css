@@ -4,7 +4,7 @@ h1 {
     font-family: cursive;
    
     color: crimson;
-    background-color: rgb(248, 203, 89);
+    
 
 }
 
@@ -21,6 +21,7 @@ h1 {
 }
 
 .question {
-    color: rgb(33, 16, 44);
+    color: rgb(67, 32, 90);
+    height: 200;
 
 }

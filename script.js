@@ -12,7 +12,7 @@ var quizQuestions = [
 function startTimer(){
     interval = setInterval(function(){
         secondsLeft--;
-        console.log(secondsLeft);
+        //console.log(secondsLeft);
         $('#timer').text("Time left : " + secondsLeft + " seconds");
 
         if (secondsLeft === 0){
@@ -29,28 +29,29 @@ startTimer();
 
 //Setting up a loop to go through the question, using for loop for now but will change to forEach
 
+
+//Add the question div
     let quizQuestion = $("<div>");
-    quizQuestion.addClass("question row").html("Question " + 1 + " : " + quizQuestions[0].question);
+    quizQuestion.addClass("question row m-5").html("Question " + 1 + " : " + quizQuestions[0].question);
     $("#quiz").append(quizQuestion);
     
     
-    let quizAnswer = $("<button>");
-    quizAnswer.addClass("answer row").html("a : " + quizQuestions[0].answers.a);
-    $("#quiz").append($(quizAnswer));
-    
+//Loop to set up the 4 answer buttons
+    $.each(quizQuestions[0].answers, function(i, answerValue){
+        let quizAnswer = $("<button>");
+        quizAnswer.addClass("answer row m-5").html(answerValue);
+        $("#quiz").append($(quizAnswer));
+        }
+    );
 
-    let quizAnswer2 = $("<button>");
-    quizAnswer2.addClass("answer row").html("b : " + quizQuestions[0].answers.b);
-    $("#quiz").append($(quizAnswer2));
 
-    let quizAnswer3 = $("<button>");
-    quizAnswer3.addClass("answer row").html("c : " + quizQuestions[0].answers.c);
-    $("#quiz").append($(quizAnswer3));
+    $(".answer").on
 
-    let quizAnswer4 = $("<button>");
-    quizAnswer4.addClass("answer row").html("d : " + quizQuestions[0].answers.d);
-    $("#quiz").append($(quizAnswer4));
 
+
+
+
+   
 
 
 
