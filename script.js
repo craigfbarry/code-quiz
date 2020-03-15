@@ -32,9 +32,12 @@ $("#startButton").click(function startTimer(){
 
 
 //Add the question div
-$.each(quizQuestions, function (i){
+$.each(quizQuestions, function displayQuiz(i){
+    
 
     if (questionCount===i){
+    console.log("count " + questionCount);
+    console.log("count i " + i);
 
     let quizQuestion = $("<div>");  
     quizQuestion.addClass("question row m-5").html("Question " + (i+1)+ " : " + quizQuestions[i].question);
@@ -50,27 +53,32 @@ $.each(quizQuestions, function (i){
         }
     );
     }
+    
 
 
 } );
 
 
     $(".answer").click(function checkAnswer(){
-        var k=questionCount;
+        //var k=questionCount;
         let result = $("<div>");
         let selection = ($(this).attr("answer-letter"));
-        if (selection === quizQuestions[k].correctAnswer) {
+        if (selection === quizQuestions[questionCount].correctAnswer) {
             result.html("Correct");
             result.appendTo("#quiz");
            
         
-           // $("#quiz").empty();
+           //$("#quiz").empty();
+           questionCount++;
+           console.log(questionCount);
             }
-        else if (selection !== quizQuestions[k].correctAnswer) {
+        else if (selection !== quizQuestions[questionCount].correctAnswer) {
             result.html("Incorrect");
             result.appendTo("#quiz");  
             
-          //  $("#quiz").empty();
+            //$("#quiz").empty();
+            questionCount++;
+            console.log(questionCount);
             
              }         
     });
