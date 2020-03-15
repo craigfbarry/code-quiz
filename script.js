@@ -39,6 +39,7 @@ $("#startButton").click(function startTimer(){
 //Loop to set up the 4 answer buttons
     $.each(quizQuestions[0].answers, function(i, answerValue){
         let quizAnswer = $("<button>");
+        quizAnswer.attr("answer-letter",i);
         quizAnswer.addClass("answer row m-5").html(answerValue);
         $("#quiz").append($(quizAnswer));
         }
@@ -47,16 +48,24 @@ $("#startButton").click(function startTimer(){
  
     $(".answer").click(function checkAnswer(){
         let result = $("<div>");
+        let option = ($(this).attr("answer-letter"));
+       //console.log(option);
+       // option = String(option);
+        console.log(option);
+        console.log(quizQuestions[0].answers);
+        console.log(quizQuestions[0].correctAnswer);
 //quizQuestions[0].answers
-        if ( $   === quizQuestions[0].correctAnswer){
+        if (quizQuestions[0].answers  === quizQuestions[0].correctAnswer) {
             result.html("Correct");
+            result.appendTo("#quiz");
             }
-        else ()   {
+        else  {
             result.html("Incorrect");
+            result.appendTo("#quiz");
         } 
 
-        result.html("button clicked");
-        result.appendTo("#quiz");
+       // result.html("button clicked");
+       // result.appendTo("#quiz");
     }        
     );
 
