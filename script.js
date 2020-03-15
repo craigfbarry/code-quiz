@@ -2,14 +2,16 @@
 
 var secondsLeft = 10;
 var quizQuestions = [
-        { question: "Who invented jquery?", answers: {a:"John Resig",b:"Bill Gates",c:"Mark Zuckerberg",d:"Elon Musk"}, correctAnswer :"a"},
+        { question: "Who invented jquery?", answers: {a:"John Resig",b:"Bill Gates",c:"Mark Zuckerberg",d:"Elon Musk"}, correctAnswer :"John Resig"},
         { question: "?", answers: {a:"a",b:"b",c:"c",d:"d"}, correctAnswer :"b"},
         { question: "?", answers: {a:"a",b:"b",c:"c",d:"d"}, correctAnswer :"c"},
 ];
 
 // A function for the quiz timer
+$(document).ready(function(){
 
-function startTimer(){
+
+$("#startButton").click(function startTimer(){
     interval = setInterval(function(){
         secondsLeft--;
         //console.log(secondsLeft);
@@ -18,14 +20,12 @@ function startTimer(){
         if (secondsLeft === 0){
             clearInterval(interval);
             $('#timer').text("OUT OF TIME!");
+            
         }
 
     },1000);
 }
-
-
-
-startTimer();
+);
 
 //Setting up a loop to go through the question, using for loop for now but will change to forEach
 
@@ -44,10 +44,25 @@ startTimer();
         }
     );
 
+ 
+    $(".answer").click(function checkAnswer(){
+        let result = $("<div>");
+//quizQuestions[0].answers
+        if ( $   === quizQuestions[0].correctAnswer){
+            result.html("Correct");
+            }
+        else ()   {
+            result.html("Incorrect");
+        } 
 
-    $(".answer").on
+        result.html("button clicked");
+        result.appendTo("#quiz");
+    }        
+    );
 
 
+
+})
 
 
 
