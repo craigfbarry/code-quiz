@@ -2,7 +2,7 @@
 
 var secondsLeft = 10;
 var quizQuestions = [
-        { question: "Who invented jquery?", answers: {a:"John Resig",b:"Bill Gates",c:"Mark Zuckerberg",d:"Elon Musk"}, correctAnswer :"John Resig"},
+        { question: "Who invented jquery?", answers: {a:"John Resig",b:"Bill Gates",c:"Mark Zuckerberg",d:"Elon Musk"}, correctAnswer :"a"},
         { question: "?", answers: {a:"a",b:"b",c:"c",d:"d"}, correctAnswer :"b"},
         { question: "?", answers: {a:"a",b:"b",c:"c",d:"d"}, correctAnswer :"c"},
 ];
@@ -45,32 +45,26 @@ $("#startButton").click(function startTimer(){
         }
     );
 
+//Function to check the clicked button against the correct answer.
+//Output the result and calculate timer   
  
     $(".answer").click(function checkAnswer(){
         let result = $("<div>");
-        let option = ($(this).attr("answer-letter"));
-       //console.log(option);
-       // option = String(option);
-        console.log(option);
-        console.log(quizQuestions[0].answers);
-        console.log(quizQuestions[0].correctAnswer);
-//quizQuestions[0].answers
-        if (quizQuestions[0].answers  === quizQuestions[0].correctAnswer) {
+        let selection = ($(this).attr("answer-letter"));
+
+
+        if (selection === quizQuestions[0].correctAnswer) {
             result.html("Correct");
             result.appendTo("#quiz");
             }
         else  {
             result.html("Incorrect");
             result.appendTo("#quiz");
-        } 
-
-       // result.html("button clicked");
-       // result.appendTo("#quiz");
-    }        
-    );
+             } 
+    });
 
 
-
+//Closing brackets from Document ready
 })
 
 
