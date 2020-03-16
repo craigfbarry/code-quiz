@@ -74,6 +74,9 @@ $("#startButton").click(function startQuiz(){
         );
                }       
         else {
+            console.log("i  "+i);
+
+            console.log("question count  "+ questionCount); 
             (i--);
         }
 
