@@ -46,13 +46,15 @@ $("#startButton").click(function startQuiz(){
     var buttonClick = "";
 
     //Add the question div
-    $.each(quizQuestions, function displayQuiz(i){
-        buttonClick = false;
 
-        //if (questionCount===i)
-        //{
+
+    $.each(quizQuestions, function displayQuiz(i){
+        //buttonClick = false;
+
+        if (questionCount===i)
+        {
        
-    
+    //Display Question
         let quizQuestion = $("<div>");  
         $("#quiz").empty();
         quizQuestion.addClass("question row m-5").html("Question " + (i+1)+ " : " + quizQuestions[i].question);
@@ -67,19 +69,24 @@ $("#startButton").click(function startQuiz(){
             $("#quiz").append($(quizAnswer));
             }
         );
-        //}   
+                }           
+           
+        buttonClick = $(".answer").click(function (){  
+               
+               return  true
+               
+        });
 
-        /*
-        do{
-            console.log(buttonClick);
+        
+       
 
-        } while (buttonClick === false);
-        */   
+
+        
        
 
         });
 
-
+       
     
 
     $(".answer").click(function checkAnswer(){
