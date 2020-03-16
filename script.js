@@ -5,13 +5,15 @@ var secondsLeft = 30;
 var quizQuestions = [
         { question: "Who invented jquery?", answers: {a:"John Resig",b:"Bill Gates",c:"Mark Zuckerberg",d:"Elon Musk"}, correctAnswer :"a"},
      
+        { question: "?", answers: {a:"a",b:"b",c:"c",d:"d"}, correctAnswer :"b"},
+        
         { question: "The hide() function hides an element by ____.?", answers: 
         {a:"setting “visibility” inline style attribute of that element to “hidden”.",
         b:"setting the horizontal attribute of that element to “-100px” off visible screen.",
         c:"setting “display” inline style attribute of that element to “none”.",
         d:"setting the vertical attribute of that element to “-100px” off visible screen."}, correctAnswer :"c"},
        
-        { question: "?", answers: {a:"a",b:"",c:"c",d:"d"}, correctAnswer :"b"},
+        { question: "?", answers: {a:"a",b:"b",c:"c",d:"d"}, correctAnswer :"b"},
 ];
 
 // A function for the quiz timer
@@ -41,14 +43,15 @@ $("#startButton").click(function startTimer(){
 //Begin Quiz loop
 $("#startButton").click(function startQuiz(){
     var questionCount = 0;
+    var buttonClick = "";
+
     //Add the question div
     $.each(quizQuestions, function displayQuiz(i){
-    
+        buttonClick = false;
 
-        if (questionCount===i)
-        {
-        console.log("count " + questionCount);
-        console.log("count i " + i);
+        //if (questionCount===i)
+        //{
+       
     
         let quizQuestion = $("<div>");  
         $("#quiz").empty();
@@ -64,18 +67,17 @@ $("#startButton").click(function startQuiz(){
             $("#quiz").append($(quizAnswer));
             }
         );
+        //}   
 
+        /*
+        do{
+            console.log(buttonClick);
 
-        }
-        else {
-            // Do nothing until event then allow loop to progress
+        } while (buttonClick === false);
+        */   
+       
 
-            //function(){            }
-        }
-        
-
-    }
-    );
+        });
 
 
     
@@ -92,6 +94,7 @@ $("#startButton").click(function startQuiz(){
            //$("#quiz").delay(5000).empty();
            questionCount++;
            console.log(questionCount);
+           buttonClick = true; 
            
             }
         else if (selection !== quizQuestions[questionCount].correctAnswer) {
@@ -103,7 +106,9 @@ $("#startButton").click(function startQuiz(){
             //$("#quiz").delay(5000).empty();
             questionCount++;
             console.log(questionCount);
+            buttonClick = true; 
              }     
+           
     });
     
 
