@@ -3,10 +3,14 @@
 var secondsLeft = 30;
 //var questionCount = 0;
 var quizQuestions = [
-        { question: "Who invented jquery?", answers: {a:"John Resig",b:"Bill Gates",c:"Mark Zuckerberg",d:"Elon Musk"}, correctAnswer :"a"},
-     
-        { question: "?", answers: {a:"a",b:"b",c:"c",d:"d"}, correctAnswer :"b"},
         
+     
+        
+        
+        { question: "Who invented jquery?", answers: {a:"John Resig",b:"Bill Gates",c:"Mark Zuckerberg",d:"Elon Musk"}, correctAnswer :"a"},
+
+      /*  { question: "?", answers: {a:"The first div element with class="intro"",b:"All div elements with class="intro"",c:"The first div element with id="intro"",d:"All div elements with id="intro""}, correctAnswer :"b"},*/
+       
         { question: "The hide() function hides an element by ____.?", answers: 
         {a:"setting “visibility” inline style attribute of that element to “hidden”.",
         b:"setting the horizontal attribute of that element to “-100px” off visible screen.",
@@ -24,7 +28,6 @@ $("#startButton").click(function startTimer(){
     $("#startButton").remove();
     interval = setInterval(function(){
         secondsLeft--;
-        //console.log(secondsLeft);
         $('#timer').text("Time left : " + secondsLeft + " seconds");
 
         if (secondsLeft === 0){
@@ -49,7 +52,7 @@ $("#startButton").click(function startQuiz(){
 
 
     $.each(quizQuestions, function displayQuiz(i){
-        //buttonClick = false;
+        buttonClick = false;
 
         if (questionCount===i)
         {
@@ -69,20 +72,21 @@ $("#startButton").click(function startQuiz(){
             $("#quiz").append($(quizAnswer));
             }
         );
-                }           
+               }       
+        else {
+            (i--);
+        }
+
+
+
+               /* I need to pause the loop here before moving on */
            
         buttonClick = $(".answer").click(function (){  
                
                return  true
                
-        });
+        }); 
 
-        
-       
-
-
-        
-       
 
         });
 
