@@ -1,15 +1,13 @@
 // Declaration of Variables to be used
 
 var secondsLeft = 30;
-//var questionCount = 0;
+
 var quizQuestions = [
-        
-     
-        
-        
+     { question: "What is jQuery?", answers: {a:"A programming language",b:"A javascript library"}, correctAnswer :"b"},
+
         { question: "Who invented jquery?", answers: {a:"John Resig",b:"Bill Gates",c:"Mark Zuckerberg",d:"Elon Musk"}, correctAnswer :"a"},
 
-      /*  { question: "?", answers: {a:"The first div element with class="intro"",b:"All div elements with class="intro"",c:"The first div element with id="intro"",d:"All div elements with id="intro""}, correctAnswer :"b"},*/
+      /* { question: "?", answers: {a:"The first div element with class="intro"",b:"All div elements with class="intro"",c:"The first div element with id="intro"",d:"All div elements with id="intro""}, correctAnswer :"b"},*/
        
         { question: "The hide() function hides an element by ____.?", answers: 
         {a:"setting “visibility” inline style attribute of that element to “hidden”.",
@@ -17,11 +15,23 @@ var quizQuestions = [
         c:"setting “display” inline style attribute of that element to “none”.",
         d:"setting the vertical attribute of that element to “-100px” off visible screen."}, correctAnswer :"c"},
        
-        { question: "?", answers: {a:"a",b:"b",c:"c",d:"d"}, correctAnswer :"b"},
+    
+
+
+
+
 ];
 
 // A function for the quiz timer
 $(document).ready(function(){
+
+var questionCount = 0;
+var questionComplete = 0;
+
+
+
+
+
 
 
 $("#startButton").click(function startTimer(){
@@ -35,100 +45,109 @@ $("#startButton").click(function startTimer(){
             $('#timer').text("OUT OF TIME!");
             
         }
+        
+        if (questionCount === questionComplete){
+            displayQuestion(questionCount);
+            questionCount++;
+            console.log("question count = " + questionCount);
+
+
+            $(".answer").on("click", function(){
+
+                let result = $("<div>");
+                let selection = ($(this).attr("answer-letter"));
+                k = questionCount;
+                if (selection === quizQuestions[k].correctAnswer) {
+                    result.html("Correct");
+                    result.appendTo("#quiz");
+                  
+                   $("#quiz").empty();
+                   
+             
+                   
+                    }
+                else if (selection !== quizQuestions[k].correctAnswer) {
+                    result.html("Incorrect");
+                    result.appendTo("#quiz");  
+                    secondsLeft = secondsLeft - 10;
+                    
+                    $("#quiz").empty();
+                   
+            
+                     }  
+                    questionComplete++;  
+                    console.log("questionComplete = "+questionComplete);
+                console.log("pressed");
+            });
+
+        };
+        
+
+
 
     },1000);
+
+
+
 }
 );
 
-//Setting up a loop to go through the question, using for loop for now but will change to forEach
+//Function to display questions
+function displayQuestion(i){
+    let quizQuestion = $("<div>");  
+    $("#quiz").empty();
+    quizQuestion.addClass("question row m-4").html("Question " + (i+1)+ " : " + quizQuestions[i].question);
+    $("#quiz").append(quizQuestion);
 
 
-//Begin Quiz loop
-$("#startButton").click(function startQuiz(){
-    var questionCount = 0;
-    var buttonClick = "";
-
-    //Add the question div
-
-
-    $.each(quizQuestions, function displayQuiz(i){
-        buttonClick = false;
-
-        if (questionCount===i)
-        {
-       
-    //Display Question
-        let quizQuestion = $("<div>");  
-        $("#quiz").empty();
-        quizQuestion.addClass("question row m-5").html("Question " + (i+1)+ " : " + quizQuestions[i].question);
-        $("#quiz").append(quizQuestion);
-        
-        
-    //Loop to set up the 4 answer buttons
-        $.each(quizQuestions[i].answers, function(j, answerValue){
-            let quizAnswer = $("<button>");
-            quizAnswer.attr("answer-letter",j);
-            quizAnswer.addClass("answer row m-5").html(answerValue);
-            $("#quiz").append($(quizAnswer));
-            }
-        );
-               }       
-        else {
-            console.log("i  "+i);
-
-            console.log("question count  "+ questionCount); 
-            (i--);
+//Loop to set up the 4 answer buttons
+    $.each(quizQuestions[i].answers, function(j, answerValue){
+        let quizAnswer = $("<button>");
+        quizAnswer.attr("answer-letter",j);
+        quizAnswer.addClass("answer row m-4").html(answerValue);
+        $("#quiz").append($(quizAnswer));
         }
+    );
+ }   
+//------------------------------------
 
-
-
-               /* I need to pause the loop here before moving on */
-           
-        buttonClick = $(".answer").click(function (){  
-               
-               return  true
-               
-        }); 
-
-
-        });
-
+/*
+ $(".answer").click(function(){
+    console.log("stuff");
+      
+    let result = $("<div>");
+    let selection = ($(this).attr("answer-letter"));
+    console.log(selection);
+    if (selection === quizQuestions[0].correctAnswer) {
+        result.html("Correct");
+        result.appendTo("#quiz");
+       console.log("stuff");
+       $("#quiz").fadeOut(2000);
        
-    
-
-    $(".answer").click(function checkAnswer(){
+ 
+       
+        }
+    else if (selection !== quizQuestions[0].correctAnswer) {
+        result.html("Incorrect");
+        result.appendTo("#quiz");  
+        secondsLeft = secondsLeft - 10;
         
-        let result = $("<div>");
-        let selection = ($(this).attr("answer-letter"));
-        if (selection === quizQuestions[questionCount].correctAnswer) {
-            result.html("Correct");
-            result.appendTo("#quiz");
-           
-           $("#quiz").fadeOut(2000);
-           //$("#quiz").delay(5000).empty();
-           questionCount++;
-           console.log(questionCount);
-           buttonClick = true; 
-           
-            }
-        else if (selection !== quizQuestions[questionCount].correctAnswer) {
-            result.html("Incorrect");
-            result.appendTo("#quiz");  
-            secondsLeft = secondsLeft - 10;
-            
-            $("#quiz").fadeOut(2000);
-            //$("#quiz").delay(5000).empty();
-            questionCount++;
-            console.log(questionCount);
-            buttonClick = true; 
-             }     
-           
-    });
-    
+        $("#quiz").fadeOut(2000);
+       
+
+         }     
+      
+});
+
+*/    
 
 
 
-})
+
+
+   
+
+
 
 
 
